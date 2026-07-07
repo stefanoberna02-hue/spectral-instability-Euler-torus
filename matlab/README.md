@@ -1,6 +1,6 @@
 # MATLAB scripts
 
-This folder contains the MATLAB scripts used to visualize the \((2,2)\) Taylor–Green vortex and to perform the finite Fourier computations supporting the real-instability argument developed in the semester project.
+This folder contains the MATLAB scripts used to visualize the \((2,2)\) Taylor–Green vortex and to perform the Fourier computations supporting the real-instability argument developed in the semester project.
 
 The scripts work on the standard torus
 
