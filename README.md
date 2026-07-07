@@ -42,22 +42,25 @@ The generalized Taylor–Green equilibria are defined by
 \qquad
 \omega_{m,n} = \Delta\psi_{m,n}.
 ```
-
 Linearization around such an equilibrium gives a Hamiltonian operator
 
 ```math
-𝓛_{m,n} = 𝒥_{m,n}𝓗_{m,n},
+L_{m,n} = J_{m,n}H_{m,n},
 ```
 
 where
 
 ```math
-𝒥_{m,n} = -\lbrace\psi_{m,n},\cdot\rbrace,
+J_{m,n}
+=
+-\left\{\psi_{m,n},\cdot\right\},
 \qquad
-𝓗_{m,n} = \operatorname{Id} + (m^2+n^2)\Delta^{-1}.
+H_{m,n}
+=
+\mathrm{Id}+(m^2+n^2)\Delta^{-1}.
 ```
 
-The central question is whether $𝓛_{m,n}$ possesses eigenvalues with positive real part.
+The central question is whether $L_{m,n}$ possesses eigenvalues with positive real part.
 
 ## Background and preliminary work
 
@@ -70,10 +73,10 @@ The theoretical foundation of this project is:
 The paper introduces a finite-dimensional criterion for detecting unstable eigenvalues of a broad class of Hamiltonian operators. For a suitable splitting
 
 ```math
-𝓗 = 𝓗_s + 𝓗_u,
+H = H_s + H_u,
 ```
 
-the unstable spectrum of the infinite-dimensional operator $𝓛 = 𝒥𝓗$ is encoded by the zeros of a finite-dimensional holomorphic determinant
+the unstable spectrum of the infinite-dimensional operator $L = JH$ is encoded by the zeros of a finite-dimensional holomorphic determinant
 
 ```math
 \Phi(\lambda) = \det M_\lambda.
@@ -91,8 +94,8 @@ The first part develops a self-contained presentation of:
 
 - the 2D Euler equations on the torus;
 - linearization around Taylor–Green equilibria;
-- the Hamiltonian factorization $𝓛 = 𝒥𝓗$;
-- the role of the negative directions of $𝓗$;
+- the Hamiltonian factorization $L = JH$;
+- the role of the negative directions of $H$;  
 - the reduction of the unstable spectral problem to a finite-dimensional determinant;
 - the invariant-subspace and symmetry decompositions used for Taylor–Green vortices.
 
@@ -101,12 +104,12 @@ The first part develops a self-contained presentation of:
 Working together with Dr. Cao-Labora, we derived a new criterion for a rank-one Hamiltonian block. In this setting, the existence of a negative-energy direction in
 
 ```math
-(\ker 𝒥)^\perp
+(\ker J)^\perp
 ```
 
 forces the appearance of a purely real unstable eigenvalue.
 
-We then applied this tool to a symmetry-reduced invariant block of the $(2,2)$ Taylor–Green operator. This yields a real unstable pair
+We then applied this tool to the $L^2_0(T^2)^{[0],c}_{[1,1]}$ invariant block of the $(2,2)$ Taylor–Green operator. This yields a real unstable pair
 
 ```math
 \lbrace\lambda_\triangle,-\lambda_\triangle\rbrace,
@@ -162,10 +165,10 @@ The new mathematical result obtained during this project is **currently being de
   Visualization of the $(2,2)$ Taylor–Green stream function, streamlines, velocity field, and stagnation points.
 
 - **[`matlab/README.md`](matlab/README.md)**  
-  Detailed mathematical and computational documentation for the MATLAB scripts, including the explicit negative-energy construction in the invariant block $L^2_0(𝕋^2)^{[0],c}_{[1,1]}$.
+  Detailed mathematical and computational documentation for the MATLAB scripts, including the explicit negative-energy construction in the invariant block $L^2_0(T^2)^{[0],c}_{[1,1]}$.
 
 - **[`matlab/Pushforward_energy_calculator.m`](matlab/Pushforward_energy_calculator.m)** and **[`matlab/L110c_instability_result.m`](matlab/L110c_instability_result.m)**  
-  Fourier-mode computations used to construct and test vectors in $(\ker 𝒥_{2,2})^\perp$ and evaluate their Hamiltonian energy.
+  Fourier-mode computations used to construct and test vectors in $(\ker J_{2,2})^\perp$ and evaluate their Hamiltonian energy.
 
 ## Citation
 
