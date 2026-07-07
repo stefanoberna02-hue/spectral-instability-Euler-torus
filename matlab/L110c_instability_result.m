@@ -1,4 +1,4 @@
-%% tg_fourier_test.m
+%% L110c_instability_result.m
 clear; clc;
 
 % Assumption: each row [a,j,k] represents a*cos(j*x+k*y).
@@ -7,19 +7,20 @@ clear; clc;
 m = 2;
 n = 2;
 
-% Initial function g = cos(3x+y).
-% This belongs to the odd-odd cosine class relevant for the (2,2) case.
-g = [1, -2*2+1, 1];
-g = [1, 1*2+1, 1*2+1];
-g = [1, -1*2+1, -1*2+1];
+% Successful function g leading to the instability result.
+% The function belongs to the odd-odd cosine class relevant to the (2,2)
+% case. Applying J_{2,2}^* = -J_{2,2} gives
+%
+%     f = J_{2,2}^* g = -J_{2,2} g.
+%
+% Hence f belongs to Range(J_{2,2}^*), which is contained in
+% Ker(J_{2,2})^\perp. The resulting vector has negative H_{2,2}-energy.
 g = [
-   -1, 3, -1;
-    1, -1, 3
+   -1,  3, -1;
+    1, -1,  3
 ];
 
-
 % Since J is skew-adjoint, J^* = -J.
-% Therefore f = -Jg belongs to Range(J^*) = Ker(J)^\perp.
 f = scaleModes(applyJ(g,m,n), -1);
 
 Hf = applyH(f,m,n);
@@ -64,23 +65,25 @@ end
 
 
 function out = applyJ(F,m,n)
-% Applies J_{m,n} f = -{psi_{m,n},f}, with psi_{m,n}=-sin(mx)sin(ny).
+% Applies J_{m,n}f = -{psi_{m,n},f}, with
+% psi_{m,n} = -sin(mx)sin(ny).
 
-    out = [];
+    out = zeros(4*size(F,1),3);
+    row = 1;
 
     for r = 1:size(F,1)
         a = F(r,1);
         j = F(r,2);
         k = F(r,3);
 
-        newRows = [
+        out(row:row+3,:) = [
             a*(m*k - n*j)/4,   j+m, k+n;
            -a*(m*k + n*j)/4,   j+m, k-n;
             a*(m*k + n*j)/4,   j-m, k+n;
             a*(n*j - m*k)/4,   j-m, k-n
         ];
 
-        out = [out; newRows];
+        row = row + 4;
     end
 
     out = collectModes(out);

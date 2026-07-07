@@ -1,59 +1,63 @@
 # MATLAB scripts
 
-This folder contains the MATLAB scripts used to visualize the \((2,2)\) Taylor–Green vortex and to perform the Fourier computations supporting the real-instability argument developed in the semester project.
+This folder contains the MATLAB scripts used to visualize the $(2,2)$ Taylor–Green vortex and to perform the Fourier computations supporting the real-instability argument developed in the semester project.
 
 The scripts work on the standard torus
 
-\[
-\mathbb T^2=\mathbb R^2/(2\pi\mathbb Z)^2
-\]
+```math
+𝕋^2 = ℝ^2/(2\piℤ)^2
+```
 
-and use the \((2,2)\) Taylor–Green stream function
+and use the $(2,2)$ Taylor–Green stream function
 
-\[
-\psi_{2,2}(x,y)=-\sin(2x)\sin(2y).
-\]
+```math
+\psi_{2,2}(x,y) = -\sin(2x)\sin(2y).
+```
 
 The associated Hamiltonian operators are
 
-\[
-\mathcal J_{2,2}=-\{\psi_{2,2},\,\cdot\,\},
+```math
+𝒥_{2,2} = -\lbrace\psi_{2,2},\cdot\rbrace,
 \qquad
-\mathcal H_{2,2}=I+8\Delta^{-1},
+𝓗_{2,2} = I+8\Delta^{-1},
 \qquad
-\mathcal L_{2,2}=\mathcal J_{2,2}\mathcal H_{2,2}.
-\]
+𝓛_{2,2} = 𝒥_{2,2}𝓗_{2,2}.
+```
 
 ## Files
 
 ### `TaylorGreen_flow_visualization.m`
 
-Produces the visualization of the \((2,2)\) Taylor–Green cellular flow used in the report and in the main repository README.
+Produces the visualization of the $(2,2)$ Taylor–Green cellular flow used in the report and in the main repository README.
 
 The script:
 
-- discretizes \([0,2\pi]^2\) on a \(500\times500\) grid;
+- discretizes $[0,2\pi]^2$ on a $500\times500$ grid;
 - evaluates
-  \[
-  \psi_{2,2}(x,y)=-\sin(2x)\sin(2y);
-  \]
+
+  ```math
+  \psi_{2,2}(x,y) = -\sin(2x)\sin(2y);
+  ```
+
 - computes the velocity field
-  \[
-  u_{2,2}=\nabla^\perp\psi_{2,2}
+
+  ```math
+  u_{2,2} = \nabla^\perp\psi_{2,2}
   =
   \bigl(2\sin(2x)\cos(2y),-2\cos(2x)\sin(2y)\bigr);
-  \]
+  ```
+
 - plots filled level sets of the stream function and the corresponding streamlines;
 - marks the hyperbolic stagnation points in red;
 - optionally displays a downsampled quiver plot when `step > 0`.
 
-The default value `step = 0` suppresses the velocity arrows and keeps the figure focused on the cellular geometry.
+The default value `step = 0` suppresses the velocity arrows and keeps the figure focused on the peculiar cellular structure of the streamlines.
 
 ---
 
-### `Energy_calculator.m`
+### `Pushforward_energy_calculator.m`
 
-Provides a generic Fourier-mode implementation of the operators \(\mathcal J_{m,n}\) and \(\mathcal H_{m,n}\) using complex exponentials.
+Provides a generic Fourier-mode implementation of the operators $𝒥_{m,n}$ and $𝓗_{m,n}$ using complex exponentials.
 
 Each row
 
@@ -63,15 +67,15 @@ Each row
 
 represents the Fourier mode
 
-\[
+```math
 a\,e^{i(jx+ky)}.
-\]
+```
 
-For the default parameters \(m=n=2\), the script starts from
+For the default parameters $m=n=2$, the script starts from
 
-\[
-g_0(x,y)=\cos(3x+y),
-\]
+```math
+g_0(x,y) = \cos(3x+y),
+```
 
 represented as
 
@@ -84,73 +88,73 @@ g0 = [
 
 It then computes
 
-\[
-f=\mathcal J_{2,2}^*g_0=-\mathcal J_{2,2}g_0,
-\]
+```math
+f = 𝒥_{2,2}^*g_0 = -𝒥_{2,2}g_0,
+```
 
-applies \(\mathcal H_{2,2}\), and evaluates
+applies $𝓗_{2,2}$, and evaluates
 
-\[
-\langle \mathcal H_{2,2}f,f\rangle_{L^2}.
-\]
+```math
+\langle 𝓗_{2,2}f,f\rangle_{L^2}.
+```
 
 Because
 
-\[
-\operatorname{Ran}(\mathcal J_{2,2}^*)
+```math
+\operatorname{Ran}(𝒥_{2,2}^*)
 \subseteq
-(\ker\mathcal J_{2,2})^\perp,
-\]
+(\ker 𝒥_{2,2})^\perp,
+```
 
 the construction automatically removes any component lying in the kernel of the transport operator.
 
 For this particular exploratory choice, the computed energy is positive:
 
-\[
-\langle \mathcal H_{2,2}f,f\rangle_{L^2}
+```math
+\langle 𝓗_{2,2}f,f\rangle_{L^2}
 =
 \frac{2948}{1105}\pi^2>0.
-\]
+```
 
 Therefore this test function does **not** prove instability. The script is mainly useful as a generic implementation and as a first test of the Fourier formulas.
 
 ---
 
-### `L110c_calculation_of_energy.m`
+### `L110c_instability_result.m`
 
 This is the script directly associated with the successful real-instability construction in the block denoted by
 
-\[
-X:=L^2_0(\mathbb T^2)^{[0],c}_{[1,1]}.
-\]
+```math
+X := L^2_0(𝕋^2)^{[0],c}_{[1,1]}.
+```
 
-The space \(X\) is the radially even cosine component of the invariant block \(L^2_0(\mathbb T^2)^{[0]}_{[1,1]}\). It can be written as
+The space $X$ is the radially even cosine component of the invariant block $L^2_0(𝕋^2)^{[0]}_{[1,1]}$. It can be written as
 
-\[
+```math
 X
 =
 \overline{\operatorname{span}}
-\left\{
+\left\lbrace
 \cos\bigl((2j+1)x+(2k+1)y\bigr):
-j,k\in\mathbb Z,\;
+j,k\inℤ,\;
 j+k\equiv0\pmod 2,\;
 j\ge0
-\right\}.
-\]
+\right\rbrace.
+```
 
-The condition \(j\ge0\) only fixes one representative of each cosine mode, since
+The condition $j\ge0$ only fixes one representative of each cosine mode, since
 
-\[
-\cos(-px-qy)=\cos(px+qy).
-\]
+```math
+\cos(-px-qy) = \cos(px+qy).
+```
 
-The operators \(\mathcal J_{2,2}\), \(\mathcal H_{2,2}\), and hence \(\mathcal L_{2,2}\), preserve this space. Moreover, \(\mathcal H_{2,2}\) is invertible on \(X\) and has exactly one negative direction there, generated by
+The operators $𝒥_{2,2}$, $𝓗_{2,2}$, and hence $𝓛_{2,2}$, preserve this space. Moreover, $𝓗_{2,2}$ is invertible on $X$ and has exactly one negative direction there, generated by
 
-\[
-E_u(x,y)=\cos(x+y),
+```math
+E_u(x,y) = \cos(x+y),
 \qquad
-\mathcal H_{2,2}E_u=-3E_u.
-\]
+𝓗_{2,2}E_u = -3E_u.
+```
 
 These are the structural assumptions required by the rank-one instability criterion.
 
@@ -164,59 +168,59 @@ Each row
 
 represents the real cosine mode
 
-\[
+```math
 a\cos(jx+ky).
-\]
+```
 
-The script receives a trigonometric polynomial \(g\in X\) and computes its image under the adjoint transport operator:
+The script receives a trigonometric polynomial $g\in X$ and computes its image under the adjoint transport operator:
 
-\[
-f=\mathcal J_{2,2}^*g=-\mathcal J_{2,2}g.
-\]
+```math
+f = 𝒥_{2,2}^*g = -𝒥_{2,2}g.
+```
 
-Since \(\mathcal J_{2,2}\) is skew-adjoint,
+Since $𝒥_{2,2}$ is skew-adjoint,
 
-\[
-\mathcal J_{2,2}^*=-\mathcal J_{2,2}.
-\]
+```math
+𝒥_{2,2}^* = -𝒥_{2,2}.
+```
 
 Consequently,
 
-\[
-f\in\operatorname{Ran}(\mathcal J_{2,2}^*)
+```math
+f\in\operatorname{Ran}(𝒥_{2,2}^*)
 \subseteq
-(\ker\mathcal J_{2,2})^\perp.
-\]
+(\ker 𝒥_{2,2})^\perp.
+```
 
 This is the first required condition: the test vector is orthogonal to the kernel of the transport operator.
 
 The script then evaluates the Hamiltonian energy
 
-\[
-q_{\mathcal H}(f)
+```math
+q_{𝓗}(f)
 =
-\langle \mathcal H_{2,2}f,f\rangle_{L^2}.
-\]
+\langle 𝓗_{2,2}f,f\rangle_{L^2}.
+```
 
 The second required condition is
 
-\[
-\langle \mathcal H_{2,2}f,f\rangle_{L^2}<0.
-\]
+```math
+\langle 𝓗_{2,2}f,f\rangle_{L^2}<0.
+```
 
 In this rank-one invariant block, the two properties
 
-\[
-f\in(\ker\mathcal J_{2,2})^\perp
+```math
+f\in(\ker 𝒥_{2,2})^\perp
 \qquad\text{and}\qquad
-\langle \mathcal H_{2,2}f,f\rangle_{L^2}<0
-\]
+\langle 𝓗_{2,2}f,f\rangle_{L^2}<0
+```
 
-imply that the stability determinant is negative at the origin. Since it tends to \(1\) along the positive real axis, it must vanish at some \(\lambda_\triangle>0\). Therefore the restricted operator possesses a purely real unstable eigenvalue.
+imply that the stability determinant is negative at the origin. Since it tends to $1$ along the positive real axis, it must vanish at some $\lambda_\triangle>0$. Therefore the restricted operator possesses a purely real unstable eigenvalue.
 
 ## Explicit successful input
 
-Only the final assignment to `g` in the script is active:
+A successful choice of the function `g` is:
 
 ```matlab
 g = [
@@ -227,7 +231,7 @@ g = [
 
 It represents
 
-\[
+```math
 \begin{aligned}
 g_{\mathrm{script}}(x,y)
 &=
@@ -235,35 +239,35 @@ g_{\mathrm{script}}(x,y)
 &=
 -\cos(3x-y)+\cos(x-3y).
 \end{aligned}
-\]
+```
 
 Thus
 
-\[
+```math
 g_{\mathrm{script}}
 =
 -\Bigl[\cos(3x-y)-\cos(x-3y)\Bigr].
-\]
+```
 
 The function used in the report before applying the transport operator is
 
-\[
+```math
 g_{\mathrm{report}}(x,y)
 =
 \cos(3x-y)-\cos(x-3y).
-\]
+```
 
 The apparent sign difference is intentional and is cancelled by the use of the adjoint operator:
 
-\[
--\mathcal J_{2,2}g_{\mathrm{script}}
+```math
+-𝒥_{2,2}g_{\mathrm{script}}
 =
-\mathcal J_{2,2}g_{\mathrm{report}}.
-\]
+𝒥_{2,2}g_{\mathrm{report}}.
+```
 
 Therefore the vector computed by the MATLAB script is exactly the test vector used in the proof:
 
-\[
+```math
 \begin{aligned}
 f
 ={}&
@@ -275,48 +279,52 @@ f
 -\cos(5x-3y)
 -\cos(3x-5y).
 \end{aligned}
-\]
+```
 
 The script obtains
 
-\[
+```math
 \boxed{
-\langle \mathcal H_{2,2}f,f\rangle_{L^2}
+\langle 𝓗_{2,2}f,f\rangle_{L^2}
 =
 -\frac{7364}{1105}\pi^2
 <0
 }
-\]
+```
 
 or numerically,
 
-\[
-\langle \mathcal H_{2,2}f,f\rangle_{L^2}
+```math
+\langle 𝓗_{2,2}f,f\rangle_{L^2}
 \approx -65.7735.
-\]
+```
 
 Hence
 
-\[
-f\in(\ker\mathcal J_{2,2})^\perp\cap X
-\]
+```math
+f\in(\ker 𝒥_{2,2})^\perp\cap X
+```
 
-and \(f\) has negative Hamiltonian energy. By the rank-one criterion, this proves the existence of a real unstable eigenvalue in the invariant block \(X\).
+and $f$ has negative Hamiltonian energy. By the rank-one criterion, this proves the existence of a real unstable eigenvalue in the invariant block $X$.
 
 ## Local helper functions
 
 The script includes four local functions:
 
-- `applyJ` applies the Fourier action of \(\mathcal J_{m,n}\), shifting each frequency \((j,k)\) to combinations of \((j\pm m,k\pm n)\);
+- `applyJ` applies the Fourier action of $𝒥_{m,n}$, shifting each frequency $(j,k)$ to combinations of $(j\pm m,k\pm n)$;
 - `applyH` applies the multiplier
-  \[
+
+  ```math
   1-\frac{m^2+n^2}{j^2+k^2};
-  \]
-- `innerL2` computes the standard \(L^2([0,2\pi]^2)\) inner product using orthogonality of cosine modes;
+  ```
+
+- `innerL2` computes the standard $L^2([0,2\pi]^2)$ inner product using orthogonality of cosine modes;
 - `collectModes` identifies
-  \[
+
+  ```math
   \cos(-jx-ky)=\cos(jx+ky),
-  \]
+  ```
+
   combines repeated modes, and removes coefficients that cancel.
 
 ## Running the scripts
@@ -325,8 +333,8 @@ From MATLAB, move to this directory and run, for example,
 
 ```matlab
 TaylorGreen_flow_visualization
-Energy_calculator
-L110c_calculation_of_energy
+Pushforward_energy_calculator
+L110c_instability_result
 ```
 
 No additional MATLAB toolbox is required.
