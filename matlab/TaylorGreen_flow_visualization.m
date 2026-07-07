@@ -26,7 +26,10 @@ hold on;
 contourf(X, Y, psi, 35, 'LineColor', 'none');
 colormap(parula);
 cb = colorbar;
-cb.Label.String = '\psi_E(x,y)';
+cb.Label.String = '$\psi_E \; (x,y)$';
+cb.Label.Interpreter = 'latex';
+cb.Label.FontSize = 14;
+cb.TickLabelInterpreter = 'latex';
 
 % Streamlines
 contour(X, Y, psi, 18, 'k', 'LineWidth', 0.55);
@@ -64,7 +67,7 @@ yticklabels({'0','\pi','2\pi'});
 
 xlabel('$x$', 'Interpreter', 'latex', 'FontSize', 14);
 ylabel('$y$', 'Interpreter', 'latex', 'FontSize', 14);
-title('Taylor--Green cellular flow $u_E=\nabla^\perp\psi_E$', ...
+title('Taylor--Green cellular flow $u_E=\nabla^\perp \; \psi_E$', ...
       'Interpreter', 'latex', 'FontSize', 15);
 
 set(gca, 'FontSize', 12, 'LineWidth', 1);
