@@ -15,6 +15,8 @@ This repository collects the mathematical report, presentation, figures, and exp
 
 The project was carried out by **Stefano Bernasconi**, under the supervision of **Prof. Maria Colombo**, with **Dr. Gonzalo Cao-Labora** as co-supervisor.
 
+The project received a final grade of **6/6**.
+
 The work concerns the spectral stability of steady solutions of the two-dimensional incompressible Euler equations on the torus. Its starting point is the recent instability theory developed by Cao-Labora, Colombo, Dolce, and Ventura for linear Hamiltonian operators. After studying and reconstructing the main ideas of that work, we developed a novel criterion that characterizes the spectrum of rank-one invariant blocks of the Linearised Euler operator; finally, we applied our result to the $(2,2)$ Taylor–Green vortex to prove the existence of a real unstable eigenvalue.
 
 ## Mathematical setting
